@@ -16,6 +16,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import me.mortuza.fragmentanimations.AdapterViews;
@@ -112,6 +113,26 @@ public class Main2Activity extends AppCompatActivity {
         Log.d("Main2Activity", "onCreate: " + modelQ.getX().get(1).getC());
 
 
+    }
+
+    //TODO MAIN DATE SET
+    @SuppressLint("DefaultLocale")
+    public void setDates() {
+        strings.clear();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        OFFSET = calendar.get(Calendar.DAY_OF_WEEK);
+        MONTHDAYS = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        monthText.setText(String.format("%s %d", month[calendar.get(Calendar.MONTH)], calendar.get(Calendar.YEAR)));
+        for (int i = 1; i < (MONTHDAYS + OFFSET); i++) {
+            Log.d("Main2Activity", "onCreate: " + i);
+            if (i >= OFFSET && (MONTHDAYS + OFFSET) > i) {
+                strings.add("" + (i + 1 - (OFFSET)));
+            } else {
+                strings.add("");
+            }
+        }
+        adapterViews.setList(strings, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+        adapterViews.notifyDataSetChanged();
     }
 
     @SuppressLint("DefaultLocale")

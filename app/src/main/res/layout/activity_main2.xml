@@ -4,45 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".activity.Main2Activity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_weight=".4"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/previous"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_left_black_24dp" />
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/month"
-            android:minWidth="@dimen/_120sdp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:text="July"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
 
-        <ImageView
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:gravity="center"
+                android:minWidth="@dimen/_120sdp"
+                android:text="July"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <include layout="@layout/header_item" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/calView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            android:background="#CDE0D1">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
-    <include layout="@layout/header_item" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".6">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/calView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </LinearLayout>

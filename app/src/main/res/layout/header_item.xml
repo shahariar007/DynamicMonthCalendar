@@ -19,7 +19,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SUN" />
+                android:text="S" />
         </LinearLayout>
 
         <LinearLayout
@@ -32,7 +32,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MON" />
+                android:text="M" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TUE" />
+                android:text="T" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +58,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="WED" />
+                android:text="W" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,7 +71,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="THU" />
+                android:text="T" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +84,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FRI" />
+                android:text="F" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +97,7 @@
                 style="@style/HeaderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SAT" />
+                android:text="S" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

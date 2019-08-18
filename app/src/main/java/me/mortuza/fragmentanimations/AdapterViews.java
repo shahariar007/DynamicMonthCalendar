@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,22 +67,40 @@ public class AdapterViews extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         Views views = (Views) viewHolder;
         if (zx) {
+            views.textView.setText(list.get(i));
+            views.textView.setTag(1);
             if (!list.get(i).isEmpty()) {
                 int now = Integer.valueOf(list.get(i));
-                if (toDate == now)
+                if (toDate == now) {
                     views.textView.setTextColor(Color.RED);
+                    views.imageViews.setVisibility(View.VISIBLE);
+                }
+                if (toDate < now) {
+                    views.textView.setTextColor(Color.GRAY);
+                    views.textView.setTag(0);
+                }
             }
-            views.textView.setText(list.get(i));
+
 
         } else {
             views.textView.setText(list.get(i));
+            views.textView.setTag(1);
+            if (!list.get(i).isEmpty()) {
+                int now = Integer.valueOf(list.get(i));
+                if (toDate > now) {
+                    views.textView.setTextColor(Color.GRAY);
+                    views.textView.setTag(0);
+                }
+            }
+
         }
 
-        if (i % 2 == 0) {
-            views.rootView_layout.setBackgroundColor(Color.parseColor("#D5CDE0"));
-        } else {
-            views.rootView_layout.setBackgroundColor(Color.parseColor("#CDE0D1"));
-        }
+//        if (i % 2 == 0) {
+//            views.rootView_layout.setBackgroundColor(Color.parseColor("#D5CDE0"));
+//        } else {
+//            views.rootView_layout.setBackgroundColor(Color.parseColor("#CDE0D1"));
+//        }
+       // views.rootView_layout.setBackgroundColor(Color.parseColor("#CDE0D1"));
     }
 
     @Override
@@ -91,23 +111,28 @@ public class AdapterViews extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public class Views extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textView;
         private LinearLayout rootView_layout;
+        private ImageView imageViews;
 
         private Views(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.dateText);
+            imageViews = itemView.findViewById(R.id.imageViews);
             rootView_layout = itemView.findViewById(R.id.rootView_layout);
             rootView_layout.setOnClickListener(this);
+            textView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (clickBack != null) {
+            if (clickBack != null && view.getId() == R.id.dateText && textView.getTag().equals(1)) {
                 clickBack.backNow(givenMonth, givenYear, getAdapterPosition());
+            } else {
+                Toast.makeText(mContext, "Sorry target date not legal", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     public interface ClickBack {
-        public void backNow(int month, int year, int pos);
+        void backNow(int month, int year, int pos);
     }
 }
