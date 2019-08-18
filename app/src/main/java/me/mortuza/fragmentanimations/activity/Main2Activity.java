@@ -1,6 +1,7 @@
 package me.mortuza.fragmentanimations.activity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -152,6 +153,24 @@ public class Main2Activity extends AppCompatActivity {
         }
         adapterViews.setList(strings, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
         adapterViews.notifyDataSetChanged();
+    }
+
+
+    public Point checkedOut(int month) {
+        Calendar calendar = Calendar.getInstance();
+        int x = calendar.get(Calendar.MONTH);
+        calendar.add(Calendar.MONTH, -1);
+        int y = calendar.get(Calendar.MONTH);
+        Point point = new Point();
+        if (x == month)
+            point.x = 0;
+        else
+            point.x = 1;
+        if (y == month)
+            point.y = 0;
+        else
+            point.y = 1;
+        return point;
     }
 
 
