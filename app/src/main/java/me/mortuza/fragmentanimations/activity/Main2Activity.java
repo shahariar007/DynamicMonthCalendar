@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +57,11 @@ public class Main2Activity extends AppCompatActivity {
         adapterViews = new AdapterViews(this);
         adapterViews.setList(strings, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
         calView.setAdapter(adapterViews);
+        Calendar calendars = Calendar.getInstance();
+
+        adapterViews.setMaxDate(calendars.getTimeInMillis());
+        calendars.add(Calendar.MONTH, -1);
+        adapterViews.setMinDate(calendars.getTimeInMillis());
         setDate();
 
         previous.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +97,8 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void backNow(int month, int year, int pos) {
                 if (!strings.get(pos).isEmpty()) {
-                    Toast.makeText(Main2Activity.this, "Date= " + strings.get(pos) + "/" + (month + 1) + "/" + year, Toast.LENGTH_SHORT).show();
+                    NumberFormat formatter = new DecimalFormat("00");
+                    Toast.makeText(Main2Activity.this, "Date= " + formatter.format(Integer.valueOf(strings.get(pos))) + "/" + formatter.format(month + 1) + "/" + year, Toast.LENGTH_SHORT).show();
                 }
             }
         });
